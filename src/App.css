@@ -1,0 +1,354 @@
+*{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+body{
+    /* height: 100vh; */
+    margin: 0;
+}
+.App{
+    width: 100%;
+    height: 100vh;
+ 
+    background: rgb(29, 29, 29);
+}
+.login{
+    width: 100%;
+    height: 100%;
+    background: rgba(156, 156, 156, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-form{
+    width: 300px;
+    height: 180px;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}
+.login-form a{
+    text-decoration: none;
+    color: white;
+}
+.btn-lg:hover{
+    box-shadow: 2px 5px #cccccc;
+    transform: scale(1.05);
+}
+.login-form .btn-lg{
+    margin-top: 60px; 
+    width: 160px;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 5px;
+    background: rgb(0, 167, 0);
+    text-align: center;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: ease-in-out 0.2s;
+}
+.btn-lg a{
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+}
+.mainpage{
+    width: 100%;
+    /* height: 100vh; */
+
+    color: white;
+    position: relative;
+}
+.user{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    border-radius: 20px;
+}
+.user > img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.user > p{
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.link{
+    display: flex;
+    text-decoration: none;  
+    color: #cccccc;
+    margin-left: 10%;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+.link:hover{
+    color: white
+}
+
+.link > h5{
+    margin-left: 5%;
+    font-weight: bold;
+}
+.test-router{
+  display: flex;
+  width: 100%;
+  /* height: 100vh; */
+  margin-bottom: 1%;
+}
+.logo{
+    display:flex;
+    text-decoration: none;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 5%;
+    color: white
+}
+.logo > h2 {
+    margin-left: 5%;
+}
+.menu{
+    width: 25%;
+    background: black;
+}
+.main-content{
+    width: 75%;
+    height: 100vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.search-form {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.search-form input{
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 300px;
+    height: 30px;
+    margin-right: 10px;
+    padding-left: 10px;
+    border-radius: 20px;
+}
+.search-form input:focus{
+    outline: none !important;
+}
+.search-btn{
+    cursor: pointer;
+}
+.list-track{
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 90px;
+}
+.list-track-item{
+    cursor: pointer
+}
+.list-track-item:hover{
+    background: rgba(0,0,0,0.3);
+}
+.list-track tr:nth-child(1){
+    font-weight: bold;
+    height: 60px;
+}
+.list-track-item td:nth-child(1){
+    padding-left: 10px;
+    width: 90px;
+}
+
+
+.playing{
+    /* width: 100%; */
+    height: 12vh;
+    background:#181818;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    position: fixed;
+    display: flex;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.left{
+    display: flex;
+    width: 25%;
+    align-items: center;
+    font-size: 1em;
+  /* background: red */
+}
+.left  img{
+    margin: 0 7%;
+}
+.left .info{
+    margin: 0 2% 0 -2%;
+    max-width: 60%;
+    overflow: hidden;
+}
+.middle{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 55%;
+    align-items: center;
+    /* background: green */
+}
+.middle p{
+    font-size: 14px;
+}
+.control{
+  display: flex;
+  width: 40%;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.butcontrol{
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  transition: ease-in-out 0.2s;
+}
+.butcontrol:hover{
+  transform: scale(1.2);
+}
+.butcontrol:nth-child(2){
+  margin: 0 7% ;
+}
+.middle .duration{
+    position: absolute;
+    bottom:12%;
+    width: 60%;
+    display: flex;
+}
+input[type="range"]{
+    -webkit-appearance: none;
+	width: 100%;
+	outline: none;
+	height: 2px;
+}
+.currentTime{
+  position: absolute;
+  left: 20%
+
+}
+.totalTime{
+  position: absolute;
+  right: 20%
+}
+input[type="range"]::-webkit-slider-thumb{
+	-webkit-appearance: none;
+	height: 15px;
+	width: 15px;
+	background: #FF8A65;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+.right .volume{
+    position: absolute;
+    top:17%;
+    display: flex;
+    font-size: 1.5em;
+}
+.right .volume p{
+     /* font-size: 1.2em; */
+    margin: 0 10% 0 -10%; 
+}
+.right .volume-control{
+    position: absolute;
+}
+.cate-list{
+    padding-top: 20px;
+    padding-bottom: 90px;
+}
+.categories{
+    text-decoration: none;
+    color: #cccccc;
+    margin: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: ease-in-out 0.2s;
+}
+.categories:hover{
+    background: rgba(255,255,255,0.2);
+
+}
+.categories h3{
+    text-align: center;
+}
+
+
+.playlist{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 90px;
+}
+.playlist-item{
+    margin: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #cccccc;
+    transition: ease-in-out 0.2s;
+}
+.playlist-item:hover{
+    background: rgba(255,255,255,0.2);
+}
+.playlist-item img{
+    width: 250px;
+    height: 250px;
+}
+.playlist-item h3{
+    text-align: center;
+    width: 250px;
+}
+
+.display-playlist-title{
+    background: linear-gradient(#333,rgba(0,0,0,0.5));
+    height: 350px;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    display: flex;
+    
+}
+.display-playlist-title h1 {
+    font-size: 80px;
+    margin-top: 0;
+}
+.user-playlist{
+    margin-left: 50px;
+}
+.user-playlist-item{
+    display: block;
+    text-decoration: none;
+    color: #cccccc;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.user-playlist-item:hover{
+    color: white;
+}
+.line{
+    margin-top: 5px;
+    width: 90%;
+    height: 2px;
+    background: rgba(255,255,255,0.2);
+}
