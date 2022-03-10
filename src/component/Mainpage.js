@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {BiLogOut} from 'react-icons/bi'
 import {BrowserRouter as Router,Route,Link, Redirect}  from "react-router-dom";
 import {AiFillHome,AiOutlineSearch,AiOutlineUnorderedList,AiFillLike} from "react-icons/ai"
@@ -10,12 +10,35 @@ import PlaylistByCategory from './PlaylistByCategory';
 import DisplayPlaylist from './DisplayPlaylist';
 import CurrentUserPlaylist from './CurrentUserPlaylist';
 import PlaylistByUser from './PlaylistByUser';
+import { useSelector } from 'react-redux';
 const Mainpage = ({token,user,logout}) => { 
     const [url,setUrl] = useState('/')
     const [playing,setPlaying] = useState(null)
+    const [playingIndex,setPlayingIndex] = useState(0)
     const [playlistId,setPlaylistId] = useState()
     const [playlist,setPlaylist] = useState(null)
     const [name,setName] = useState("")
+    const listTrack = useSelector(state => state.listTrack)
+    useEffect(() => {
+        console.log(playingIndex)
+        setPlaying(listTrack[playingIndex])
+    },[playingIndex])
+    const next = () => {
+        if(playingIndex === listTrack.length - 1) {
+            setPlayingIndex(0)
+        }
+        else {
+            setPlayingIndex(playingIndex + 1)
+        }
+    }
+    const prev = () => {
+        if(playingIndex === 0) {
+            setPlayingIndex(listTrack.length - 1)
+        }
+        else {
+            setPlayingIndex(playingIndex - 1)
+        }
+    }
     const [displayPll,setDisplayPll] = useState({
         name: "",
         playlist_id: null,
@@ -73,7 +96,7 @@ const Mainpage = ({token,user,logout}) => {
                         <Home token={token} setPlaylist={setPlaylist} setPlaylistId={setPlaylistId} setName={setName}></Home>
                     </Route>
                     <Route exact path='/search'>
-                        <Search token={token} setPlaying={setPlaying}></Search>
+                        <Search token={token}  playing={playing} setPlaying={setPlaying} setPlayingIndex={setPlayingIndex} playingIndex={playingIndex}></Search>
                     </Route>
                     <Route exact path='/playlist'>
                         <PlaylistByUser token={token} setDisplayPll={setDisplayPll}></PlaylistByUser>
@@ -82,13 +105,13 @@ const Mainpage = ({token,user,logout}) => {
                         <PlaylistByCategory token={token} cate={name} playlist={playlist} setDisplayPll={setDisplayPll}></PlaylistByCategory>
                     </Route>
                     <Route exact path={`/home/category/playlist/${displayPll.playlist_id}`}>
-                        <DisplayPlaylist token={token} playlist={displayPll} setPlaying={setPlaying}></DisplayPlaylist>
+                    <DisplayPlaylist token={token} playlist={displayPll} playing={playing} setPlaying={setPlaying} setPlayingIndex={setPlayingIndex} playingIndex={playingIndex}></DisplayPlaylist>
                     </Route>
                     <Route exact path={`/playlist/${displayPll.playlist_id}`}>
-                        <DisplayPlaylist token={token} playlist={displayPll} setPlaying={setPlaying}></DisplayPlaylist>
+                        <DisplayPlaylist token={token} playlist={displayPll} playing={playing}  setPlaying={setPlaying} setPlayingIndex={setPlayingIndex} playingIndex={playingIndex}></DisplayPlaylist>
                     </Route>
                 </div>
-                <PlayController item={playing}></PlayController>
+                <PlayController item={playing} next={next} prev={prev}></PlayController>
             </div>
         </div>
     </Router>

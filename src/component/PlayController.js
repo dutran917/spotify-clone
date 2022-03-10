@@ -3,7 +3,7 @@ import {FcLike} from "react-icons/fc"
 import {ImPause,ImNext, ImPlay2,ImPrevious} from "react-icons/im"
 import {BsFillVolumeMuteFill} from "react-icons/bs"
 import { useState,useRef,useEffect} from 'react'
-const PlayController = ({item}) => {
+const PlayController = ({item,next,prev}) => {
     const [playing_song,setPlaying ]= useState(false)
     const [duration,setDuration] = useState(0)
     const [currentTime,setCurrentTime] = useState(0)
@@ -15,7 +15,7 @@ const PlayController = ({item}) => {
         console.log(item)
     },[item])
     function justplay(){
-        if(item!=null)
+        if(item.preview_url)
         {
             const audio = audioRef.current
             
@@ -86,7 +86,7 @@ const PlayController = ({item}) => {
     useEffect(()=>{
         console.log(position)
         setPlaying(false)
-        setPosition(0)
+        // setPosition(0)
         setCurrentTime(0)
     },[item])
   return (
@@ -94,24 +94,29 @@ const PlayController = ({item}) => {
     <div className="left">
     <img src={item.album.images[2].url} height="60px" width="60px"></img>
     <div className="info">
-        <p id="track-title" style={{fontWeight:'600'}}>{item.name}</p>
-        <p id="track-artist" style={{color:'#cccccc'}}>{item.artists[0].name}</p>
+        <p className="track-title" style={{fontWeight:'600'}}>{item.name}</p>
+        <p className="track-artist" style={{color:'#cccccc'}}>{item.artists[0].name}</p>
     </div>
   
     </div>
     <div className="middle">
-       {item.preview_url ?
         <div className="control">  
-            <ImPrevious id="pre" className="butcontrol"></ImPrevious> 
+            <ImPrevious id="pre" className="butcontrol" onClick={() => {
+                prev()
+                const audio = audioRef.current
+                audio.pause()
+            }}></ImPrevious> 
             {playing_song==false && <ImPlay2 id="play" className="butcontrol" onClick={()=>justplay()}></ImPlay2> }
             {playing_song && <ImPause className="butcontrol" onClick={()=>justplay()}></ImPause>}
-            <ImNext id="next"  className="butcontrol"></ImNext> 
+            <ImNext id="next"  className="butcontrol" onClick={() => {
+                next()
+                const audio = audioRef.current
+                audio.pause()
+            }}></ImNext> 
         </div>
-        : <></>
-       }
             <p className="currentTime">{secondsToMin(currentTime)}</p>
         <div className="duration">
-            {item!=null && <input type="range" min="0" max="100" value={position} step="0.01"  onChange={(e)=>onchange(e)}/>}
+            {item!=null && <input type="range" min="0" max="100" value={position}  step="0.01"  onChange={(e)=>onchange(e)}/>}
         </div>
             <p className="totalTime">{secondsToMin(duration)}</p>
        

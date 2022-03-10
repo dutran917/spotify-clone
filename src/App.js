@@ -11,7 +11,7 @@ function App() {
   const RESPONSE_TYPE = "token"
   const [token, setToken] = useState("")
   const [user,setUser] = useState(null)
-   useEffect(() => {
+  useEffect(() => {
       const hash = window.location.hash
       let token = window.localStorage.getItem("token")
       if (!token && hash) {
@@ -20,7 +20,6 @@ function App() {
           window.location.hash = ""
           window.localStorage.setItem("token", token)
       }
-
       setToken(token)
       axios.get('https://api.spotify.com/v1/me',{
       headers: {
@@ -30,8 +29,14 @@ function App() {
         console.log(res.data)
         setUser(res.data)
       })
-  }, [])
+  }, [token])
 
+  useEffect(() => {
+    setTimeout(() => {
+      setToken("")
+      window.localStorage.removeItem("token")
+    },600000)
+  },[])
 
   const logout = () => {
       setToken("")

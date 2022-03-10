@@ -149,7 +149,16 @@ body{
     margin-bottom: 90px;
 }
 .list-track-item{
-    cursor: pointer
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+}
+.list-track-item-playing{
+    cursor: pointer;
+    background: rgba(0,0,0,0.6);
+}
+.list-track-item-playing td:nth-child(1){
+    padding-left: 10px;
+    width: 90px;
 }
 .list-track-item:hover{
     background: rgba(0,0,0,0.3);
@@ -183,15 +192,17 @@ body{
     width: 25%;
     align-items: center;
     font-size: 1em;
+    box-sizing: border-box;
+    padding-left: 10px;
   /* background: red */
 }
 .left  img{
-    margin: 0 7%;
 }
 .left .info{
-    margin: 0 2% 0 -2%;
-    max-width: 60%;
-    overflow: hidden;
+    margin-left: 10px;
+}
+.track-title{
+   width: 300px;
 }
 .middle{
     position: relative;
@@ -297,9 +308,10 @@ input[type="range"]::-webkit-slider-thumb{
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 90px;
+    justify-content: space-evenly;
 }
 .playlist-item{
-    margin: auto;
+    /* margin: auto; */
     margin-bottom: 10px;
     border-radius: 10px;
     text-decoration: none;
