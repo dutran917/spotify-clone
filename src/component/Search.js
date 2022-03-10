@@ -3,10 +3,12 @@ import { useState,useEffect } from 'react';
 import axios from 'axios';
 import ListTrack from './ListTrack';
 import {BsSearch} from 'react-icons/bs'
-const Search = ({token,setPlaying}) => {
-  const [listTrack,setListTrack] = useState(null)
+import { useDispatch, useSelector } from 'react-redux';
+import { setNewList } from '../action/list';
+const Search = ({token,playing,setPlaying,setPlayingIndex}) => {
+  const listTrack = useSelector(state => state.listTrack)
   const [search,setSearch] = useState("")
-
+  const dispatch = useDispatch()
   const searchTrack = async (e) => {
       const x = document.getElementById('search')
       e.preventDefault()
@@ -20,7 +22,8 @@ const Search = ({token,setPlaying}) => {
       }
       })
       console.log(data)
-      setListTrack(data.data.tracks.items)
+      const action = setNewList(data.data.tracks.items)
+      dispatch(action)
       x.reset()
   } 
   useEffect(()=>{
@@ -31,7 +34,7 @@ const Search = ({token,setPlaying}) => {
           <input placeholder='enter the name of song...' onChange={(e)=> setSearch(e.target.value)}></input>
           <BsSearch size='30px' className='search-btn' onClick={(e)=>searchTrack(e)}></BsSearch>
       </form>
-      <ListTrack listTrack={listTrack} setPlaying={setPlaying}></ListTrack>
+      <ListTrack listTrack={listTrack} playing={playing} setPlaying={setPlaying} setPlayingIndex={setPlayingIndex}></ListTrack>
   </div>;
 };
 

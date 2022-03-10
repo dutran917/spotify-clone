@@ -1,8 +1,11 @@
 import React, { useEffect,useState } from 'react'
 import ListTrack from './ListTrack'
 import axios from 'axios'
-const DisplayPlaylist = ({playlist,token,setPlaying}) => {
+import { useDispatch } from 'react-redux'
+import { setNewList } from '../action/list'
+const DisplayPlaylist = ({playlist,token,playing,setPlaying,setPlayingIndex}) => {
     const [listTrack,setListTrack] = useState(null)
+    const dispatch = useDispatch()
     useEffect(()=>{
         if(playlist.playlist_id !== null)
         {
@@ -19,12 +22,14 @@ const DisplayPlaylist = ({playlist,token,setPlaying}) => {
                         temp.push(item.track)
                     })
                     setListTrack(temp)
+                    const action = setNewList(temp)
+                    dispatch(action)
                 } 
             })
         }
     },[playlist])
     useEffect(()=>{
-        console.log(listTrack)
+        setPlayingIndex(0)
     },[listTrack])
   return (
     <div className='display-playlist'>
@@ -35,7 +40,7 @@ const DisplayPlaylist = ({playlist,token,setPlaying}) => {
             <h1>{playlist.name}</h1>
             </div>
         </div>
-        <ListTrack listTrack={listTrack} setPlaying={setPlaying}></ListTrack>
+        <ListTrack listTrack={listTrack} playing={playing} setPlaying={setPlaying} setPlayingIndex={setPlayingIndex}></ListTrack>
     </div>
   )
 }
