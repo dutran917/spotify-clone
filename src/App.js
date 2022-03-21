@@ -26,7 +26,6 @@ function App() {
         Authorization: `Bearer ${token}`
       }
       }).then((res)=>{
-        console.log(res.data)
         setUser(res.data)
       })
   }, [token])

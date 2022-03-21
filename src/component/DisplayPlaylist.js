@@ -1,10 +1,10 @@
 import React, { useEffect,useState } from 'react'
 import ListTrack from './ListTrack'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setNewList } from '../action/list'
 const DisplayPlaylist = ({playlist,token,playing,setPlaying,setPlayingIndex}) => {
-    const [listTrack,setListTrack] = useState(null)
+    const listTrack = useSelector(state => state.listTrack)
     const dispatch = useDispatch()
     useEffect(()=>{
         if(playlist.playlist_id !== null)
@@ -14,14 +14,12 @@ const DisplayPlaylist = ({playlist,token,playing,setPlaying,setPlayingIndex}) =>
                 Authorization: `Bearer ${token}`
             }
             }).then((res)=>{
-                console.log(res)
                 if(res.data.items)
                 {
                     let temp = []
                     res.data.items.forEach(item => {
                         temp.push(item.track)
                     })
-                    setListTrack(temp)
                     const action = setNewList(temp)
                     dispatch(action)
                 } 

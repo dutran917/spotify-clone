@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 const PlaylistByCategory = ({token,cate,playlist,setDisplayPll}) => {
   useEffect(()=>{
-    console.log(playlist)
   },[])
   
   const url = window.location.href

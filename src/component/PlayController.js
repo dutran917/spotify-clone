@@ -12,7 +12,6 @@ const PlayController = ({item,next,prev}) => {
     const [position,setPosition] = useState(0)
     const [volume,setVolume] = useState(50)
     useEffect(()=>{
-        console.log(item)
     },[item])
     function justplay(){
         if(item.preview_url)
@@ -84,7 +83,6 @@ const PlayController = ({item,next,prev}) => {
         }
     },[percent,volume])
     useEffect(()=>{
-        console.log(position)
         setPlaying(false)
         // setPosition(0)
         setCurrentTime(0)
@@ -125,7 +123,6 @@ const PlayController = ({item,next,prev}) => {
         ref={audioRef} 
         src = {item.preview_url}
         onLoadedData = {(e)=>{
-            console.log(e.currentTarget.duration)
             setDuration(e.currentTarget.duration.toFixed(2))
         }}
         onTimeUpdate = {getCurrDuration}
