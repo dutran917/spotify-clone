@@ -13,9 +13,6 @@ const CurrentUserPlaylist = ({token,setDisplayPll}) => {
             setList(data)
         })
     },[])
-    useEffect(()=>{
-        console.log(list)
-    },[list])
   return (
     <div className='user-playlist'>
     {

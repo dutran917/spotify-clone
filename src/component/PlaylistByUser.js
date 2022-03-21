@@ -9,7 +9,6 @@ const PlaylistByUser = ({token,setDisplayPll}) => {
                 Authorization: `Bearer ${token}`
             }
         }).then((data)=>{
-            console.log(data)
             setList(data.data.items)
         })
     },[])

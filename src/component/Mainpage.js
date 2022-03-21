@@ -20,7 +20,6 @@ const Mainpage = ({token,user,logout}) => {
     const [name,setName] = useState("")
     const listTrack = useSelector(state => state.listTrack)
     useEffect(() => {
-        console.log(playingIndex)
         setPlaying(listTrack[playingIndex])
     },[playingIndex])
     const next = () => {
